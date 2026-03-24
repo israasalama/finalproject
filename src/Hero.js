@@ -1,0 +1,23 @@
+import heroImage from './assets/images/hero-image.jpg'
+
+function Hero() {
+  return (
+    <section aria-label="Hero">
+      <article>
+        <h1>Little Lemon</h1>
+        <h2>Chicago</h2>
+        <p>
+          We are a family owned Mediterranean restaurant,
+          focused on traditional recipes served with a
+          modern twist.
+        </p>
+        <a href="/reservations">
+          <button>Reserve a Table</button>
+        </a>
+      </article>
+      <img src={heroImage} alt="Mediterranean dishes at Little Lemon" />
+    </section>
+  )
+}
+
+export default Hero
