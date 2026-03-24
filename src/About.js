@@ -1,9 +1,10 @@
 import restaurantPhoto from './assets/images/restaurant.jpg'
 import chefPhoto from './assets/images/chef.jpg'
+import './About.css'
 
 function About() {
   return (
-    <section aria-label="About Little Lemon">
+    <section className='about' aria-label="About Little Lemon">
 
       <article>
         <h2>Little Lemon</h2>

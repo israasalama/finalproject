@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Karla', sans-serif;
+  background-color: #FAFAFA;
+  color: #333333;
+}
+
+h1, h2, h3 {
+  font-family: 'Markazi Text', serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background-color: #F4CE14;
+  color: #333333;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+button:hover {
+  background-color: #e0bb12;
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}

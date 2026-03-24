@@ -1,6 +1,7 @@
+import './Testimonials.css'
 function TestimonialCard({ name, rating, review, image }) {
   return (
-    <article>
+    <article className='testimonial-card'>
       <img src={image} alt={`Photo of ${name}`} />
       <h3>{name}</h3>
       <p aria-label={`Rating: ${rating} out of 5`}>

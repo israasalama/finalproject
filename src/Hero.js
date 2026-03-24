@@ -1,8 +1,9 @@
 import heroImage from './assets/images/hero-image.jpg'
+import './Hero.css'
 
 function Hero() {
   return (
-    <section aria-label="Hero">
+    <section className='hero' aria-label="Hero">
       <article>
         <h1>Little Lemon</h1>
         <h2>Chicago</h2>

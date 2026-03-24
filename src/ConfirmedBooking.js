@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom'
+import './ConfirmedBooking.css'
 
 function ConfirmedBooking() {
   const location = useLocation()
@@ -7,7 +8,7 @@ function ConfirmedBooking() {
 
   return (
     <main>
-      <section aria-label="Booking Confirmed">
+      <section className='confirmed' aria-label="Booking Confirmed">
 
         <span aria-hidden="true">✓</span>
         <h1>Booking Confirmed!</h1>

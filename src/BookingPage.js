@@ -1,9 +1,10 @@
 import BookingForm from './BookingForm'
+import './BookingPage.css'
 
 function BookingPage() {
   return (
     <main>
-      <section aria-label="Reservations">
+      <section className='booking' aria-label="Reservations">
         <h1>Reserve a Table</h1>
         <p>
           Book your table at Little Lemon and enjoy the finest

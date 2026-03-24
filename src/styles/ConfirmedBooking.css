@@ -1,0 +1,85 @@
+.confirmed {
+  padding: 80px 160px;
+  background-color: #FAFAFA;
+  text-align: center;
+}
+
+.confirmed span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #495E57;
+  color: #F4CE14;
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.confirmed h1 {
+  font-size: 48px;
+  color: #495E57;
+  margin-bottom: 12px;
+}
+
+.confirmed > p {
+  font-size: 18px;
+  color: #333333;
+  margin-bottom: 40px;
+}
+
+.confirmed article {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid #eee;
+  padding: 32px;
+  max-width: 600px;
+  margin: 0 auto 32px;
+  text-align: left;
+}
+
+.confirmed article h2 {
+  font-size: 24px;
+  color: #333333;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.confirmed dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 0;
+}
+
+.confirmed dt {
+  font-size: 14px;
+  color: #888;
+}
+
+.confirmed dd {
+  font-size: 14px;
+  color: #333333;
+  font-weight: 500;
+  text-align: right;
+}
+
+.confirmed address {
+  font-style: normal;
+  margin-bottom: 32px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.confirmed nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.confirmed nav button:last-child {
+  background-color: #495E57;
+  color: #FAFAFA;
+}

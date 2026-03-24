@@ -1,0 +1,39 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background-color: #495E57;
+  padding: 48px 160px;
+  gap: 40px;
+}
+
+.hero article h1 {
+  font-size: 64px;
+  color: #F4CE14;
+}
+
+.hero article h2 {
+  font-size: 40px;
+  color: #FAFAFA;
+  margin-bottom: 16px;
+}
+
+.hero article p {
+  font-size: 18px;
+  color: #FAFAFA;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 400px;
+}
+
+.hero figure {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero figure img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 16px;
+}

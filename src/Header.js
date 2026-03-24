@@ -1,8 +1,9 @@
 import logo from './assets/Logo .svg'
+import './Header.css'
 
 function Header() {
   return (
-    <header>
+    <header className='header'>
       <img src={logo} alt="Little Lemon logo" />
     </header>
   )

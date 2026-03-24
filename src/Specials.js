@@ -1,7 +1,7 @@
 import greekSalad from './assets/images/greek-salad.jpg'
 import bruschetta from './assets/images/bruschetta.svg'
 import lemonDessert from './assets/images/lemon-dessert.jpg'
-
+import './Specials.css'
 const specials = [
   {
     id: 1,
@@ -45,7 +45,7 @@ function SpecialCard({ name, price, description, image, alt }) {
 
 function Specials() {
   return (
-    <section aria-label="Specials">
+    <section className='specials' aria-label="Specials">
       <header>
         <h2>This week's specials!</h2>
         <a href="/menu">

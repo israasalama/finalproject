@@ -1,8 +1,10 @@
 import logo from './assets/Logo .svg'
+import './Footer.css'
+
 
 function Footer() {
   return (
-    <footer>
+    <footer className='footer'>
 
       <img src={logo} alt="Little Lemon logo" />
 
