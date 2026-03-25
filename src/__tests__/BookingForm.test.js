@@ -2,61 +2,67 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
 import BookingForm from '../BookingForm'
 
+const availableTimes = ["5:00 PM", "6:00 PM", "7:00 PM"]
+const dispatch = jest.fn()
+
 const renderBookingForm = () => {
   render(
     <BrowserRouter>
-      <BookingForm />
+      <BookingForm
+        availableTimes={availableTimes}
+        dispatch={dispatch}
+      />
     </BrowserRouter>
   )
 }
 
 describe('BookingForm', () => {
 
-  test('renders the booking form', () => {
+  test('renders the Find a Table button', () => {
     renderBookingForm()
     expect(screen.getByText('Find a Table →')).toBeInTheDocument()
   })
 
-  test('renders all form fields', () => {
+  test('renders the Date label', () => {
     renderBookingForm()
     expect(screen.getByLabelText('Date')).toBeInTheDocument()
+  })
+
+  test('renders the Time label', () => {
+    renderBookingForm()
     expect(screen.getByLabelText('Time')).toBeInTheDocument()
+  })
+
+  test('renders the Number of guests label', () => {
+    renderBookingForm()
     expect(screen.getByLabelText('Number of guests')).toBeInTheDocument()
+  })
+
+  test('renders the Occasion label', () => {
+    renderBookingForm()
     expect(screen.getByLabelText('Occasion')).toBeInTheDocument()
   })
 
-  test('shows error when form is submitted empty', () => {
+  test('renders the Seating preference legend', () => {
+    renderBookingForm()
+    expect(screen.getByText('Seating preference')).toBeInTheDocument()
+  })
+
+  test('shows error when form submitted empty', () => {
     renderBookingForm()
     fireEvent.click(screen.getByText('Find a Table →'))
     expect(screen.getByText('Please select a date')).toBeInTheDocument()
     expect(screen.getByText('Please select a time')).toBeInTheDocument()
   })
 
-  test('updates available times when date is changed', () => {
+  test('dispatches UPDATE_TIMES when date is changed', () => {
     renderBookingForm()
     const dateInput = screen.getByLabelText('Date')
     fireEvent.change(dateInput, { target: { value: '2025-04-05' } })
-    const timeSelect = screen.getByLabelText('Time')
-    expect(timeSelect.options.length).toBeGreaterThan(1)
-  })
-
-  test('shows weekend times when a Saturday is selected', () => {
-    renderBookingForm()
-    const dateInput = screen.getByLabelText('Date')
-    fireEvent.change(dateInput, { target: { value: '2025-04-05' } })
-    const timeSelect = screen.getByLabelText('Time')
-    const options = Array.from(timeSelect.options).map(o => o.value)
-    expect(options).toContain('12:00 PM')
-  })
-
-  test('shows weekday times when a Monday is selected', () => {
-    renderBookingForm()
-    const dateInput = screen.getByLabelText('Date')
-    fireEvent.change(dateInput, { target: { value: '2025-04-07' } })
-    const timeSelect = screen.getByLabelText('Time')
-    const options = Array.from(timeSelect.options).map(o => o.value)
-    expect(options).not.toContain('12:00 PM')
-    expect(options).toContain('5:00 PM')
+    expect(dispatch).toHaveBeenCalledWith({
+      type: 'UPDATE_TIMES',
+      date: '2025-04-05'
+    })
   })
 
 })

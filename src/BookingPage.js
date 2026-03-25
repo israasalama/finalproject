@@ -2,21 +2,21 @@ import { useReducer } from 'react'
 import BookingForm from './BookingForm'
 import './styles/BookingPage.css'
 
-const weekdayTimes = [
+export const weekdayTimes = [
   "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM",
   "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM"
 ]
 
-const weekendTimes = [
+export const weekendTimes = [
   "12:00 PM", "1:00 PM", "2:00 PM", "5:00 PM",
   "6:00 PM", "7:00 PM", "7:30 PM", "8:00 PM", "9:00 PM"
 ]
 
-function initializeTimes() {
+export function initializeTimes() {
   return weekdayTimes
 }
 
-function updateTimes(state, action) {
+export function updateTimes(state, action) {
   switch (action.type) {
     case 'UPDATE_TIMES':
       const day = new Date(action.date).getDay()
