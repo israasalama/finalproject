@@ -26,14 +26,15 @@
   max-width: 400px;
 }
 
-.hero figure {
-  display: flex;
-  justify-content: flex-end;
+.hero-image-wrapper {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 16px;
 }
 
-.hero figure img {
-  width: 400px;
-  height: 400px;
+.hero-image-wrapper img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 16px;
 }

@@ -1,30 +1,9 @@
-import { useState, useReducer } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './styles/BookingForm.css'
 
-export const weekdayTimes = [
-  "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM",
-  "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM"
-]
-
-export const weekendTimes = [
-  "12:00 PM", "1:00 PM", "2:00 PM", "5:00 PM",
-  "6:00 PM", "7:00 PM", "7:30 PM", "8:00 PM", "9:00 PM"
-]
-
-export function timesReducer(state, action) {
-  switch (action.type) {
-    case 'UPDATE_TIMES':
-      const day = new Date(action.date).getDay()
-      return (day === 0 || day === 6) ? weekendTimes : weekdayTimes
-    default:
-      return state
-  }
-}
-
-function BookingForm() {
+function BookingForm({ availableTimes, dispatch }) {
   const navigate = useNavigate()
-  const [availableTimes, dispatch] = useReducer(timesReducer, weekdayTimes)
 
   const [formData, setFormData] = useState({
     date: '',

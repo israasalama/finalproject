@@ -4,8 +4,7 @@ import './styles/About.css'
 
 function About() {
   return (
-    <section className='about' aria-label="About Little Lemon">
-
+    <section className="about" aria-label="About Little Lemon">
       <article>
         <h2>Little Lemon</h2>
         <h3>Chicago</h3>
@@ -22,15 +21,14 @@ function About() {
           from local farms and suppliers we trust.
         </p>
       </article>
-
-      <figure>
-        <img src={restaurantPhoto} alt="Inside Little Lemon restaurant" />
-      </figure>
-
-      <figure>
-        <img src={chefPhoto} alt="Chef at Little Lemon restaurant" />
-      </figure>
-
+      <div className="about-images">
+        <div className="about-image-wrapper">
+          <img src={restaurantPhoto} alt="Inside Little Lemon restaurant" />
+        </div>
+        <div className="about-image-wrapper">
+          <img src={chefPhoto} alt="Chef at Little Lemon restaurant" />
+        </div>
+      </div>
     </section>
   )
 }

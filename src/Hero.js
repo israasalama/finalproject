@@ -3,7 +3,7 @@ import './styles/Hero.css'
 
 function Hero() {
   return (
-    <section className='hero' aria-label="Hero">
+    <section className="hero" aria-label="Hero">
       <article>
         <h1>Little Lemon</h1>
         <h2>Chicago</h2>
@@ -16,7 +16,9 @@ function Hero() {
           <button>Reserve a Table</button>
         </a>
       </article>
-      <img src={heroImage} alt="Mediterranean dishes at Little Lemon" />
+      <div className="hero-image-wrapper">
+        <img src={heroImage} alt="Mediterranean dishes at Little Lemon" />
+      </div>
     </section>
   )
 }
