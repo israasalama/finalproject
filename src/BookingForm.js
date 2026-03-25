@@ -1,6 +1,6 @@
 import { useState, useReducer } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './BookingForm.css'
+import './styles/BookingForm.css'
 
 export const weekdayTimes = [
   "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM",

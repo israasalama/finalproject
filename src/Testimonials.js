@@ -1,8 +1,9 @@
-import './Testimonials.css'
+import './styles/Testimonials.css'
+
 function TestimonialCard({ name, rating, review, image }) {
   return (
-    <article className='testimonial-card'>
-      <img src={image} alt={`Photo of ${name}`} />
+    <article>
+      <img src={image} alt={name} />
       <h3>{name}</h3>
       <p aria-label={`Rating: ${rating} out of 5`}>
         {"★".repeat(rating)}{"☆".repeat(5 - rating)}
@@ -47,17 +48,19 @@ const testimonials = [
 
 function Testimonials() {
   return (
-    <section aria-label="Testimonials">
+    <section className="testimonials" aria-label="Testimonials">
       <h2>Testimonials</h2>
-      {testimonials.map(testimonial => (
-        <TestimonialCard
-          key={testimonial.id}
-          name={testimonial.name}
-          rating={testimonial.rating}
-          review={testimonial.review}
-          image={testimonial.image}
-        />
-      ))}
+      <div className="testimonials-grid">
+        {testimonials.map(testimonial => (
+          <TestimonialCard
+            key={testimonial.id}
+            name={testimonial.name}
+            rating={testimonial.rating}
+            review={testimonial.review}
+            image={testimonial.image}
+          />
+        ))}
+      </div>
     </section>
   )
 }

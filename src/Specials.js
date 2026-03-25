@@ -1,7 +1,8 @@
 import greekSalad from './assets/images/greek-salad.jpg'
-import bruschetta from './assets/images/bruschetta.svg'
+import bruschetta from './assets/images/bruchetta.svg'
 import lemonDessert from './assets/images/lemon-dessert.jpg'
-import './Specials.css'
+import './styles/Specials.css'
+
 const specials = [
   {
     id: 1,
@@ -34,8 +35,10 @@ function SpecialCard({ name, price, description, image, alt }) {
     <article>
       <img src={image} alt={alt} />
       <section>
-        <h3>{name}</h3>
-        <span>{price}</span>
+        <div className="card-title-row">
+          <h3>{name}</h3>
+          <span>{price}</span>
+        </div>
         <p>{description}</p>
         <a href="/order">Order a delivery →</a>
       </section>
@@ -45,23 +48,25 @@ function SpecialCard({ name, price, description, image, alt }) {
 
 function Specials() {
   return (
-    <section className='specials' aria-label="Specials">
-      <header>
+    <section className="specials" aria-label="Specials">
+      <div className="specials-header">
         <h2>This week's specials!</h2>
         <a href="/menu">
           <button>Online Menu</button>
         </a>
-      </header>
-      {specials.map(special => (
-        <SpecialCard
-          key={special.id}
-          name={special.name}
-          price={special.price}
-          description={special.description}
-          image={special.image}
-          alt={special.alt}
-        />
-      ))}
+      </div>
+      <div className="specials-grid">
+        {specials.map(special => (
+          <SpecialCard
+            key={special.id}
+            name={special.name}
+            price={special.price}
+            description={special.description}
+            image={special.image}
+            alt={special.alt}
+          />
+        ))}
+      </div>
     </section>
   )
 }

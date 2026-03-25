@@ -1,6 +1,6 @@
 import restaurantPhoto from './assets/images/restaurant.jpg'
 import chefPhoto from './assets/images/chef.jpg'
-import './About.css'
+import './styles/About.css'
 
 function About() {
   return (

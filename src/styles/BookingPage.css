@@ -1,0 +1,16 @@
+.booking-page {
+  padding: 48px 160px;
+  background-color: #495E57;
+}
+
+.booking-page h1 {
+  font-size: 48px;
+  color: #F4CE14;
+  margin-bottom: 8px;
+}
+
+.booking-page p {
+  font-size: 18px;
+  color: #FAFAFA;
+  margin-bottom: 32px;
+}
