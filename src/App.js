@@ -5,6 +5,7 @@ import Main from './Main'
 import Footer from './Footer'
 import BookingPage from './BookingPage'
 import ConfirmedBooking from './ConfirmedBooking'
+import './styles/global.css';
 
 function App() {
   return (
