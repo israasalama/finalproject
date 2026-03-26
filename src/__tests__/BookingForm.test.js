@@ -61,7 +61,7 @@ describe('BookingForm', () => {
     fireEvent.change(dateInput, { target: { value: '2025-04-05' } })
     expect(dispatch).toHaveBeenCalledWith({
       type: 'UPDATE_TIMES',
-      date: '2025-04-05'
+      payload: '2025-04-05'
     })
   })
 

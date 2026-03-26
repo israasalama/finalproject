@@ -8,12 +8,12 @@ import BookingPage from './BookingPage';
 import ConfirmedBooking from './ConfirmedBooking';
 import { fetchAPI, submitAPI } from './api';
 
-const initializeTimes = () => {
+export const initializeTimes = () => {
   const today = new Date();
   return fetchAPI(today);
 };
 
-const updateTimes = (state, action) => {
+export const updateTimes = (state, action) => {
   if (action.type === 'UPDATE_TIMES') {
     const selectedDate = new Date(action.payload);
     return fetchAPI(selectedDate);

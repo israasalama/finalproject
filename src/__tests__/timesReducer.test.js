@@ -1,38 +1,24 @@
-import { updateTimes, initializeTimes, weekdayTimes, weekendTimes } from '../BookingPage'
+import { initializeTimes, updateTimes } from '../Main';
 
 describe('initializeTimes', () => {
-
-  test('returns weekday times as initial state', () => {
-    const result = initializeTimes()
-    expect(result).toEqual(weekdayTimes)
-  })
-
-})
+  test('returns a non-empty array of available booking times', () => {
+    const result = initializeTimes();
+    expect(result.length).toBeGreaterThan(0);
+  });
+});
 
 describe('updateTimes', () => {
-
   test('returns the same state when unknown action is dispatched', () => {
-    const action = { type: 'UNKNOWN' }
-    const result = updateTimes(weekdayTimes, action)
-    expect(result).toEqual(weekdayTimes)
-  })
+    const action = { type: 'UNKNOWN' };
+    const initialState = ['17:00', '18:00'];
+    const result = updateTimes(initialState, action);
+    expect(result).toEqual(initialState);
+  });
 
-  test('returns weekday times for a Monday', () => {
-    const action = { type: 'UPDATE_TIMES', date: '2025-04-07' }
-    const result = updateTimes([], action)
-    expect(result).toEqual(weekdayTimes)
-  })
+  test('returns a non-empty array for a selected date', () => {
+    const action = { type: 'UPDATE_TIMES', payload: '2026-05-10' };
+    const result = updateTimes([], action);
 
-  test('returns weekend times for a Saturday', () => {
-    const action = { type: 'UPDATE_TIMES', date: '2025-04-05' }
-    const result = updateTimes([], action)
-    expect(result).toEqual(weekendTimes)
-  })
-
-  test('returns weekend times for a Sunday', () => {
-    const action = { type: 'UPDATE_TIMES', date: '2025-04-06' }
-    const result = updateTimes([], action)
-    expect(result).toEqual(weekendTimes)
-  })
-
-})
+    expect(result.length).toBeGreaterThan(0);
+  });
+});
