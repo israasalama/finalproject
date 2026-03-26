@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/BookingForm.css';
 
-// Added submitForm to the props
 function BookingForm({ availableTimes, dispatch, submitForm }) {
   const navigate = useNavigate();
 
@@ -20,7 +19,6 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
   function handleDateChange(e) {
     const date = e.target.value;
     setFormData({ ...formData, date });
-    // FIXED: Changed 'date' to 'payload: date'
     dispatch({ type: 'UPDATE_TIMES', payload: date });
   }
 
@@ -46,13 +44,12 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
       return;
     }
 
-    // Call the submission function from Main.js
     const isSuccess = submitForm(formData);
     if (isSuccess) {
       navigate('/confirmed', { state: formData });
     }
   }
-
+  const isFormValid = formData.date !== "" && formData.time !== "" && formData.occasion !== "";
   return (
     <form onSubmit={handleSubmit} noValidate>
       <label htmlFor="date">Date</label>
@@ -63,6 +60,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         value={formData.date}
         onChange={handleDateChange}
         required
+        min={new Date().toISOString().split("T")[0]}
       />
       {errors.date && <span role="alert">{errors.date}</span>}
 
@@ -75,7 +73,6 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         required
       >
         <option value="">Select a time</option>
-        {/* Renders the dynamic times */}
         {availableTimes?.map(time => (
           <option key={time} value={time}>{time}</option>
         ))}
@@ -88,6 +85,9 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         name="guests"
         value={formData.guests}
         onChange={handleChange}
+        required
+        min="1"
+        max="10"
       >
         {[1,2,3,4,5,6,7,8,9,10].map(num => (
           <option key={num} value={num}>{num}</option>
@@ -144,7 +144,9 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         placeholder="Any special requirements? (optional)"
       />
 
-      <button type="submit">Find a Table →</button>
+      <button type="submit" disabled={!isFormValid} aria-label="On Click">
+         Find a Table →
+      </button>
     </form>
   );
 }
