@@ -12,11 +12,7 @@ function App() {
       <>
         <Header />
         <Nav />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/reservations" element={<BookingPage />} />
-          <Route path="/confirmed" element={<ConfirmedBooking />} />
-        </Routes>
+        <Main />
         <Footer />
       </>
     </BrowserRouter>

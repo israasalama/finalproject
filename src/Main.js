@@ -1,44 +1,67 @@
-import { useReducer } from 'react'
-import Hero from './Hero'
-import Specials from './Specials'
-import Testimonials from './Testimonials'
-import About from './About'
+import { Routes, Route } from 'react-router-dom';
+import { useReducer, useState } from 'react';
+import Hero from './Hero';
+import Specials from './Specials';
+import Testimonials from './Testimonials';
+import About from './About';
+import BookingPage from './BookingPage';
+import ConfirmedBooking from './ConfirmedBooking';
+import { fetchAPI, submitAPI } from './api';
 
-const weekdayTimes = [
-  "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM",
-  "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM"
-]
+const initializeTimes = () => {
+  const today = new Date();
+  return fetchAPI(today);
+};
 
-const weekendTimes = [
-  "12:00 PM", "1:00 PM", "2:00 PM", "5:00 PM",
-  "6:00 PM", "7:00 PM", "7:30 PM", "8:00 PM", "9:00 PM"
-]
-
-function initializeTimes() {
-  return weekdayTimes
-}
-
-function updateTimes(state, action) {
-  switch (action.type) {
-    case 'UPDATE_TIMES':
-      const day = new Date(action.date).getDay()
-      return (day === 0 || day === 6) ? weekendTimes : weekdayTimes
-    default:
-      return state
+const updateTimes = (state, action) => {
+  if (action.type === 'UPDATE_TIMES') {
+    const selectedDate = new Date(action.payload);
+    return fetchAPI(selectedDate);
   }
-}
+  return state;
+};
 
 function Main() {
-  const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes())
+  const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes);
+  const [bookings, setBookings] = useState(() => {
+  const savedBookings = localStorage.getItem('bookings');
+  return savedBookings ? JSON.parse(savedBookings) : [];
+});
+  const submitForm = (formData) => {
+    const isSubmitted = submitAPI(formData);
+    if (isSubmitted) {
+      const updatedBookings = [...bookings, formData];
+      setBookings(updatedBookings);
+      localStorage.setItem('bookings', JSON.stringify(updatedBookings));
+      return true;
+    }
+    return false;
+  };
 
   return (
     <main>
-      <Hero />
-      <Specials />
-      <Testimonials />
-      <About />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Hero />
+            <Specials />
+            <Testimonials />
+            <About />
+          </>
+        } />
+
+        <Route path="/reservations" element={
+          <BookingPage
+            availableTimes={availableTimes}
+            dispatch={dispatch}
+            submitForm={submitForm}
+          />
+        } />
+
+        <Route path="/confirmed" element={<ConfirmedBooking />} />
+      </Routes>
     </main>
-  )
+  );
 }
 
-export default Main
+export default Main;

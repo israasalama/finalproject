@@ -1,34 +1,7 @@
-import { useReducer } from 'react'
 import BookingForm from './BookingForm'
 import './styles/BookingPage.css'
 
-export const weekdayTimes = [
-  "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM",
-  "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM"
-]
-
-export const weekendTimes = [
-  "12:00 PM", "1:00 PM", "2:00 PM", "5:00 PM",
-  "6:00 PM", "7:00 PM", "7:30 PM", "8:00 PM", "9:00 PM"
-]
-
-export function initializeTimes() {
-  return weekdayTimes
-}
-
-export function updateTimes(state, action) {
-  switch (action.type) {
-    case 'UPDATE_TIMES':
-      const day = new Date(action.date).getDay()
-      return (day === 0 || day === 6) ? weekendTimes : weekdayTimes
-    default:
-      return state
-  }
-}
-
-function BookingPage() {
-  const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes())
-
+function BookingPage({ availableTimes, dispatch, submitForm }) {
   return (
     <main>
       <section className="booking-page" aria-label="Reservations">
@@ -37,10 +10,13 @@ function BookingPage() {
           Book your table at Little Lemon and enjoy the finest
           Mediterranean cuisine in the heart of Chicago.
         </p>
+
         <BookingForm
           availableTimes={availableTimes}
           dispatch={dispatch}
+          submitForm={submitForm}
         />
+
       </section>
     </main>
   )

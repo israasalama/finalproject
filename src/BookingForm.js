@@ -1,9 +1,10 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import './styles/BookingForm.css'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './styles/BookingForm.css';
 
-function BookingForm({ availableTimes, dispatch }) {
-  const navigate = useNavigate()
+// Added submitForm to the props
+function BookingForm({ availableTimes, dispatch, submitForm }) {
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     date: '',
@@ -12,43 +13,48 @@ function BookingForm({ availableTimes, dispatch }) {
     occasion: '',
     seating: 'Indoor',
     specialRequests: ''
-  })
+  });
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   function handleDateChange(e) {
-    const date = e.target.value
-    setFormData({ ...formData, date })
-    dispatch({ type: 'UPDATE_TIMES', date })
+    const date = e.target.value;
+    setFormData({ ...formData, date });
+    // FIXED: Changed 'date' to 'payload: date'
+    dispatch({ type: 'UPDATE_TIMES', payload: date });
   }
 
   function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
   function validate() {
-    const newErrors = {}
-    if (!formData.date) newErrors.date = 'Please select a date'
-    if (!formData.time) newErrors.time = 'Please select a time'
-    if (!formData.occasion) newErrors.occasion = 'Please select an occasion'
+    const newErrors = {};
+    if (!formData.date) newErrors.date = 'Please select a date';
+    if (!formData.time) newErrors.time = 'Please select a time';
+    if (!formData.occasion) newErrors.occasion = 'Please select an occasion';
     if (formData.guests < 1 || formData.guests > 10)
-      newErrors.guests = 'Guests must be between 1 and 10'
-    return newErrors
+      newErrors.guests = 'Guests must be between 1 and 10';
+    return newErrors;
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
-    const newErrors = validate()
+    e.preventDefault();
+    const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
+      setErrors(newErrors);
+      return;
     }
-    navigate('/confirmed', { state: formData })
+
+    // Call the submission function from Main.js
+    const isSuccess = submitForm(formData);
+    if (isSuccess) {
+      navigate('/confirmed', { state: formData });
+    }
   }
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-
       <label htmlFor="date">Date</label>
       <input
         type="date"
@@ -69,7 +75,8 @@ function BookingForm({ availableTimes, dispatch }) {
         required
       >
         <option value="">Select a time</option>
-        {availableTimes.map(time => (
+        {/* Renders the dynamic times */}
+        {availableTimes?.map(time => (
           <option key={time} value={time}>{time}</option>
         ))}
       </select>
@@ -138,9 +145,8 @@ function BookingForm({ availableTimes, dispatch }) {
       />
 
       <button type="submit">Find a Table →</button>
-
     </form>
-  )
+  );
 }
 
-export default BookingForm
+export default BookingForm;
